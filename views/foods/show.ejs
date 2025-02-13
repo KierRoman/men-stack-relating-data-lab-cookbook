@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= pantryItems.name %>
+    </title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+        <h1>
+            <%= pantryItems.name %>
+        </h1>
+        <p>Brand: <br>
+            <%= pantryItems.brand %>
+        </p>
+
+        <a href="/users/<%= user._id %>/foods/<%= pantryItems._id %>/edit">
+            Edit this application
+        </a>
+        <br>
+        <br>
+        <form action="/users/<%=user._id%>/foods/<%=pantryItems._id%>?_method=DELETE" method="POST">
+            <button type="submit">Remove this item</button>
+        </form>
+</body>
+
+</html>
