@@ -12,17 +12,17 @@
     <%- include('../partials/_navbar') %>
         <h1>Edit <%= pantryItems.name %>
         </h1>
-        <form action="'/users/<% user._id %>/foods/<%= pantryItems._id %>?method=PUT" method="POST">
+        <form action="/users/<%= user._id %>/foods/<%= pantryItems._id %>?_method=PUT" method="POST">
             <label for="name">Food Name:</label>
-            <input type="text" id="name" name="name" placeholder="<%= pantryItems.name %>" required><br><br>
+            <input type="text" id="name" name="name" value="<%= pantryItems.name %>" required><br><br>
 
             <label for="brand">Brand:</label>
-            <input brand="text" id="brand" name="brand" placeholder="<%= pantryItems.brand %>" required><br><br>
+            <input type="text" id="brand" name="brand" value="<%= pantryItems.brand %>" required><br><br>
 
             <button type="submit">Edit <%= pantryItems.name %></button>
         </form>
 
-        <a href="/">Back to Pantry</a>
+        <a href="/users/<%=user._id%>/foods">Back to Pantry</a>
 </body>
 
 </html>

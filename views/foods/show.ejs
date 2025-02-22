@@ -18,14 +18,16 @@
             <%= pantryItems.brand %>
         </p>
 
-        <a href="/users/<%= user._id %>/foods/<%= pantryItems._id %>/edit">
+        <button><a href="/users/<%= user._id %>/foods/<%= pantryItems._id %>/edit">
             Edit this application
-        </a>
+        </a></button>
         <br>
         <br>
         <form action="/users/<%=user._id%>/foods/<%=pantryItems._id%>?_method=DELETE" method="POST">
             <button type="submit">Remove this item</button>
         </form>
+        <br>
+        <button><a href="/users/<%=user._id%>/foods">Back to Pantry</a></button>
 </body>
 
 </html>

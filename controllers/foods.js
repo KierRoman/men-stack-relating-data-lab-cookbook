@@ -8,22 +8,23 @@ const User = require('../models/user.js');
 // router logic will go here - will be built later on in the lab
 
 //INDEX
-router.get('/', (req, res) => {
-    User.findById(req.session.user)
-        .then((user) => {
-            if (!user) {
-                return res.redirect('/')
-            }
-            res.render('foods/index.ejs', {
-                user: req.session.user,
-                pantryItems: user.pantry,
-            });
-        })
-        .catch((err) => {
-            console.log('Error fetching user on pantry items:', err)
-            res.redirect('/')
-        })
+router.get ('/', async (req, res) => {
+   try{ const user = await User.findById(req.session.user._id)
+    const item = user.pantry
+    res.render('foods/index.ejs', {
+        user: user,
+        pantryItems: item
+    })
+} catch (err) {
+    console.log(err)
+    res.redirect('/')
+}
+
 })
+
+
+
+
 
 
 //NEW
@@ -46,6 +47,22 @@ router.delete('/:itemId', async (req, res) => {
 
 
 //UPDATE
+router.put('/:itemId', async (req, res) => {
+    try{
+        const user = await User.findById(req.session.user._id)
+        const item = user.pantry.id(req.params.itemId)
+        item.set(req.body)
+        await user.save()
+        res.redirect(`/users/${user._id}/foods`)
+    } catch {
+        (err) => {
+            console.log(err)
+            res.redirect('/')
+        }
+    }
+})
+
+
 
 
 //CREATE
